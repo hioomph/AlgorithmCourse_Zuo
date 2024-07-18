@@ -1,16 +1,18 @@
 /**
  * @brief LeetCode模式
  */
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
+int help[50001];
+
 void merge(vector<int>& nums, int l, int m, int r) {
-    vector<int> help(nums.size());
     int i = l;
     int a = l;
-    int b = m + 1;
-    
+    int b = m+1;
+
     while (a <= m && b <= r) {
         help[i++] = nums[a] <= nums[b] ? nums[a++] : nums[b++];
     }
@@ -23,14 +25,14 @@ void merge(vector<int>& nums, int l, int m, int r) {
         help[i++] = nums[b++];
     }
 
-    for (i = l; i <= r; i++) {
+    for (int i = l; i <= r; i++) {
         nums[i] = help[i];
     }
 }
 
 // 递归版
 void mergesort(vector<int>& nums, int l, int r){  
-    if(l == r) {
+    if (l == r) {
         return;
     } else {  
         int m = (l + r) / 2;  
